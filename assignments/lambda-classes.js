@@ -1,151 +1,138 @@
 // CODE here for your Lambda Classes
 
-/* 
-Prototype Refactor
-
-1. Copy and paste your code or the solution from yesterday
-2. Your goal is to refactor all of this code to use ES6 Classes.
- The console.log() statements should still return what is expected of them.
-*/
-
-/*
-  === GameObject ===
-  * createdAt
-  * name
-  * dimensions (These represent the character's size in the video game)
-  * destroy() // prototype method that returns: `${this.name} was removed from the game.`
-*/
-
-class GameObject {
+class Person {
   constructor (attributes) {
     //object
-    this.createdAt = attributes.createdAt;
     this.name = attributes.name;
-    this.dimensions = attributes.dimensions;
-    this.healthPoints = attributes.healthPoints;
-    this.team = attributes.team;
-    this.weapons = attributes.weapons;
-    this.language = attributes.language;
+    this.age = attributes.age;
+    this.location = attributes.location;
   }
     //prototype
-    destroy () {
-      return `${this.name} was removed from the game.`;
+    speak () {
+      return `Hello my name is ${this.name}, I am from ${this.location}.`;
     }
   }
-  
-  /*
-    === CharacterStats ===
-    * healthPoints
-    * takeDamage() // prototype method -> returns the string '<object name> took damage.'
-    * should inherit destroy() from GameObject's prototype
-  */
-  
-  //constructor function
-  class CharacterStats extends GameObject {
-    constructor (attributes) {
-    //inheritance
-    super(attributes);
-    }
-    //prototype
-    takeDamage () {
-      return `${this.name} took damage.`;
+
+class instuctor extends Person {
+  constructor (teacher) {
+  //inheritance  
+  super(teacher);
+  this.specialty = teacher.specialty;
+  this.favLanguage = teacher.favLanguage;
+  this.catchPhrase = teacher.catchPhrase;
+  }
+  //prototype
+  demo (subject) {
+    return `Today we are learning about ${this.subject}.`;
     };
-  }
-  
-  /*
-    === Humanoid (Having an appearance or character resembling that of a human.) ===
-    * team
-    * weapons
-    * language
-    * greet() // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-    * should inherit destroy() from GameObject through CharacterStats
-    * should inherit takeDamage() from CharacterStats
-  */
-  
-  //constructor function
-  class Humanoid extends CharacterStats {
-    constructor (attributes) {
-    //inheritance
-    super(attributes);
-    }
-    //prototype
-    greet () {
-      return `${this.name} offers a greeting in ${this.language} .`;
+  grade (student, subject) {
+    return `${this.name} receives a perfect score on ${this.subject}.`;
     };
-  } 
-  
-  /*
-    * Inheritance chain: GameObject -> CharacterStats -> Humanoid
-    * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
-    * Instances of CharacterStats should have all of the same properties as GameObject.
-  */
-  
-  // Test you work by un-commenting these 3 objects and the list of console logs below:
-  
-  
-    const mage = new Humanoid({
-      createdAt: new Date(),
-      dimensions: {
-        length: 2,
-        width: 1,
-        height: 1,
-      },
-      healthPoints: 5,
-      name: 'Bruce',
-      team: 'Mage Guild',
-      weapons: [
-        'Staff of Shamalama',
-      ],
-      language: 'Common Tongue',
-    });
-  
-    const swordsman = new Humanoid({
-      createdAt: new Date(),
-      dimensions: {
-        length: 2,
-        width: 2,
-        height: 2,
-      },
-      healthPoints: 15,
-      name: 'Sir Mustachio',
-      team: 'The Round Table',
-      weapons: [
-        'Giant Sword',
-        'Shield',
-      ],
-      language: 'Common Tongue',
-    });
-  
-    const archer = new Humanoid({
-      createdAt: new Date(),
-      dimensions: {
-        length: 1,
-        width: 2,
-        height: 4,
-      },
-      healthPoints: 10,
-      name: 'Lilith',
-      team: 'Forest Kingdom',
-      weapons: [
-        'Bow',
-        'Dagger',
-      ],
-      language: 'Elvish',
-    });
-  
-    console.log(mage.createdAt); // Today's date
-    console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
-    console.log(swordsman.healthPoints); // 15
-    console.log(mage.name); // Bruce
-    console.log(swordsman.team); // The Round Table
-    console.log(mage.weapons); // Staff of Shamalama
-    console.log(archer.language); // Elvish
-    console.log(archer.greet()); // Lilith offers a greeting in Elvish.
-    console.log(mage.takeDamage()); // Bruce took damage.
-    console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-  
-  
-    // Stretch task: 
-    // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
-    // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
-    // * Create two new objects, one a villain and one a hero and fight it out with methods!
+} 
+
+class student extends Person {
+  constructor (Students) {
+  //inheritance
+  super(Students);
+  this.previousBackground = Students.previousBackground;
+  this.className = Students.className;
+  this.favSubjects = Students.favSubjects;
+  }
+  //prototype 
+  listsSubjects () {
+    return `${this.favSubjects}.`;
+    };
+  PRAssignment (subject) {
+    return `${this.name} has submitted a PR for ${this.subject}.`;
+    };
+  sprintChallenge (subject) {
+    return `${this.name} has begun sprint challenge on ${subject}.`;
+    };
+} 
+
+class projectManager extends instuctor {
+  constructor (pms) {
+  //inheritance
+  super(pms);
+  this.gradClassName = pms.gradClassName;
+  this.favInstructor = pms.favInstructor;
+  }
+  //prototype
+  standUp (channel) {
+    return `${this.name} announces to ${this.channel}, @channel standy times!​​​​​`;
+    };
+  debugCode (object, subject) {
+    return `${this.name} debugs ${this.object}'s code on ${this.subject}.`;
+    };
+} 
+
+const bob = new student({
+  name: 'Bob',
+  age: 22,
+  location: 'Uah',
+  previousBackground: "Worked at walmart",
+  className: "CS132",
+  favSubjects: ['HTML5', 'CSS3'],
+});
+
+const emily = new student({
+  name: 'Emily',
+  age: 30,
+  location: 'Massachussetts',
+  previousBackground: "Stay at home mom",
+  className: "CS3",
+  favSubjects: ['HTML5', 'CSS3', "Ruby"],
+});
+// prototypes for student speak, listsSubjects, PRAssignment, sprintChallenge
+const greg = new instuctor({
+  name: 'Greg',
+  age: 30,
+  location: 'Massachussetts',
+  specialty:  "React",
+  favLanguage: "JavaScript",
+  catchPhrase: "Don't forget the homies",
+});
+const amber = new instuctor({
+  name: 'Amber',
+  age: 45,
+  location: 'New York',
+  specialty:  "Angular",
+  favLanguage: "React",
+  catchPhrase: "Don't forget the extra credit",
+});
+ // prototypes for instructor "speak, demo, grade"
+
+const jordan = new projectManager({
+  name: 'Jordan',
+  age: 15,
+  location: 'California',
+  specialty:  "Bootsrap",
+  favLanguage: "Python",
+  catchPhrase: "Up, up, and away!",
+  gradClassName: "CS12",
+  favInstructor: "Robert",
+});
+const kasey = new projectManager({
+  name: 'Kasey',
+  age: 27,
+  location: 'Texas',
+  specialty:  "LESS",
+  favLanguage: "Php",
+  catchPhrase: "Jinkies!",
+  gradClassName: "WEBPT3",
+  favInstructor: "Jimmy",
+});
+// prototypes for project managers speak, demo, grade, standup, debugCode
+
+// students
+console.log(bob.favSubjects);
+console.log(emily.previousBackground);
+console.log(bob.speak());
+// instructors
+console.log(greg.age);
+console.log(amber.specialty);
+console.log(amber.grade());
+// project manager
+console.log(jordan.catchPhrase);
+console.log(kasey.favInstructor);
+console.log(jordan.debugCode());
