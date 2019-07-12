@@ -23,12 +23,14 @@ class instuctor extends Person {
   }
   //prototype
   demo (subject) {
-    return `Today we are learning about ${this.subject}.`;
+    return `Today we are learning about ${subject}.`;
     };
   grade (student, subject) {
-    return `${this.name} receives a perfect score on ${this.subject}.`;
+    return `${student} receives a perfect score on ${subject}.`;
     };
+  
 } 
+
 
 class student extends Person {
   constructor (Students) {
@@ -43,7 +45,7 @@ class student extends Person {
     return `${this.favSubjects}.`;
     };
   PRAssignment (subject) {
-    return `${this.name} has submitted a PR for ${this.subject}.`;
+    return `${this.name} has submitted a PR for ${subject}.`;
     };
   sprintChallenge (subject) {
     return `${this.name} has begun sprint challenge on ${subject}.`;
@@ -59,10 +61,10 @@ class projectManager extends instuctor {
   }
   //prototype
   standUp (channel) {
-    return `${this.name} announces to ${this.channel}, @channel standy times!​​​​​`;
+    return `${this.name} announces to ${channel}, @channel standy times!​​​​​`;
     };
   debugCode (object, subject) {
-    return `${this.name} debugs ${this.object}'s code on ${this.subject}.`;
+    return `${this.name} debugs ${object}'s code on ${subject}.`;
     };
 } 
 
@@ -131,8 +133,8 @@ console.log(bob.speak());
 // instructors
 console.log(greg.age);
 console.log(amber.specialty);
-console.log(amber.grade());
+console.log(amber.grade("jimmy", "react"));
 // project manager
 console.log(jordan.catchPhrase);
 console.log(kasey.favInstructor);
-console.log(jordan.debugCode());
+console.log(jordan.demo("angular"));
